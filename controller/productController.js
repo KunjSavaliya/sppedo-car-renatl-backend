@@ -1,61 +1,62 @@
 const { response } = require("express");
 const Product = require("../model/product");
-var nodemailr = require('nodemailer');
+const Gmaildata = require("../model/Gmail");
 
+// var nodemailr = require("nodemailer");
 
-const mail_sender =  async(req, res) => {
- const{name} = req.body;
- const{phone} = req.body;
-  const{email} = req.body;
- const{car} = req.body;
- const{drive} = req.body;
- const{pickup} = req.body;
- const{drop} = req.body;
- const{date} = req.body;
+// const mail_sender = async (req, res) => {
+//   const { name, phone, email, car, drive, pickup, drop, date } = req.body;
 
+//   var transporter = nodemailr.createTransport({
+//     service: "gmail",
+//     auth: {
+//       user: process.env.EMAIL,
+//       pass: process.env.PASSWORD,
+//     },
+//   });
 
+//   var mailOptions = {
+//     from: process.env.EMAIL,
+//     to: email,
+//     subject: "car rental",
+//     text: `Your Name:${req.body.name}, Phone Number:${req.body.phone},CarType:${req.body.car}, Driver Option:${req.body.drive}, Gadi Pickup Ariya:${req.body.pickup}, Gadi Drop Ariya:${req.body.drop}, Gadi Booking date:${req.body.date}`,
+//   };
 
-var transporter = nodemailr.createTransport({
-  service:'gmail',
-  auth:{
-    // user:'kunjsavaliya.2003@gmail.com',
-    //  pass:'exfxfzkboagxyeom'
-    user:process.env.EMAIL,
-    pass:process.env.PASSWORD
-  }
-});
+//   transporter.sendMail(mailOptions, function (error, info) {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       console.log("Email Sent:" + info.response);
+//     }
+//   });
+//   // const { name, phone, email, car, drive, pickup, drop, date } = req.body;
+//   {
+//     const user = new Gmaildata({
+//       name,
+//       phone,
+//       email,
+//       car,
+//       drive,
+//       pickup,
+//       drop,
+//       date,
+//     });
+//     user.save((err) => {
+//       if (err) {
+//         res.send(err);
+//       } else {
+//         res.send({ message: "succes" });
+//       }
+//     });
+//   }
+//   console.log(req.body);
+// };
 
-var mailOptions = {
-  from: process.env.EMAIL,
-  to:email,
-  subject:"car rental",
-  text: `Your Name:${req.body.name}, Phone Number:${req.body.phone},CarType:${req.body.car}, Driver Option:${req.body.drive}, Gadi Pickup Ariya:${req.body.pickup}, Gadi Drop Ariya:${req.body.drop}, Gadi Booking date:${req.body.date}`
-    
-  
-};
-
-
-transporter.sendMail(mailOptions, function(error, info){
-  if(error){
-      console.log(error)
-  }else{
-      console.log("Email Sent:" + info.response);
-  }
-  
-})
-
-}
-
-
-
-const mail_get = async (req, res) => {
-  mail_sender()
-   .then((response)=>res.send(response.message))
-   .catch((error)=>res.status(500).send(error.message));
-}
-
-
-
+// const mail_get = async (req, res) => {
+//   mail_sender()
+//     .then((response) => res.send(response.message))
+//     .catch((error) => res.status(500).send(error.message));
+// };
 
 const product_register = async (req, res) => {
   const { name, email, password, Phone } = req.body;
@@ -82,40 +83,29 @@ const product_register = async (req, res) => {
   console.log(req.body);
 };
 
-
-
-const product_forget= async (req, res) => {
-  const {  password, email } = req.body;
+const product_forget = async (req, res) => {
+  const { password, email } = req.body;
   Product.findOne({ email: email }, (err, Product) => {
-    
     Product.updateOne({
-        $set: {
-          password: req.body.password,
-        },
-      }
-    )
-     .then((result) => {
-          res.status(200).json({
-            Product: result,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-          res.status(500).json({
-            error: err,
-          });
+      $set: {
+        password: req.body.password,
+      },
+    })
+      .then((result) => {
+        res.status(200).json({
+          Product: result,
         });
-    
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({
+          error: err,
+        });
+      });
   });
- 
+
   console.log(req.body);
 };
-
-
-
-
-
-
 
 const product_userdata = async (req, res) => {
   Product.find({}, function (err, Product) {
@@ -128,16 +118,10 @@ const product_userdata = async (req, res) => {
   // console.log(req.Product);
 };
 
-
-
-
-
-
-
 module.exports = {
   product_register,
   product_userdata,
   product_forget,
-  mail_sender,
-  mail_get
+  // mail_sender,
+  // mail_get,
 };
