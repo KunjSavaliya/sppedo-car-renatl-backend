@@ -11,20 +11,17 @@ app.use(bodyParser.json());
 
 // app.use('/public',express.static('public'));
 const productRoutes = require("./routes/product");
-app.use('/api', productRoutes);
-
-
+app.use("/api", productRoutes);
 
 mongoose.connect(
-    "mongodb://localhost:27017/CABI",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true, 
-    },
-    () => {
-      console.log("DB connected ");
-    }
-  );
+  "mongodb://localhost:27017/CABI",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log("DB connected ");
+  }
+);
 
 app.listen(8000, () => console.log("Hello world app listening on port  !"));
-

@@ -1,19 +1,25 @@
 const router = require("express").Router();
-const productController = require("../controller/productController");
-const CommentController = require("../controller/CommentController");
-const GmailData = require("../controller/GmailData");
+const RegisterController = require("../controller/RegisterController");
+const ContactController = require("../controller/ContactController");
+const CarbookingController = require("../controller/CarbookingController");
+const FeedbackController = require("../controller/FeedbackController");
 
-router.post("/regi", productController.product_register);
-router.get("/userdata", productController.product_userdata);
-router.get("/Gmaildata", GmailData.Gmail_data);
+router.post("/regi", RegisterController.product_register);
+router.get("/userdata", RegisterController.product_userdata);
+router.get("/Gmaildata", CarbookingController.Gmail_data);
 
-router.get("/mail", GmailData.mail_get);
+router.get("/mail", CarbookingController.mail_get);
 
-router.post("/forget", productController.product_forget);
-router.post("/mailsent", GmailData.mail_sender);
-router.post("/comment", CommentController.comment_data);
-router.get("/commentdata", CommentController.comment_value);
+router.post("/forget", RegisterController.product_forget);
+router.post("/mailsent", CarbookingController.mail_sender);
+router.get("/Gmailupdateid/:id", CarbookingController.Gmail_updateid);
+router.delete("/Gdelete/:id", CarbookingController.Gmail_del);
+router.put("/gupdate/:id", CarbookingController.Gmail_update);
 
-// router.post("/gmaildata", GmailData.gmail_data);
+router.post("/comment", ContactController.comment_data);
+router.get("/commentdata", ContactController.comment_value);
+
+router.post("/feedback", FeedbackController.Feedback_sender);
+router.get("/feedbackdata", FeedbackController.feedback_data);
 
 module.exports = router;

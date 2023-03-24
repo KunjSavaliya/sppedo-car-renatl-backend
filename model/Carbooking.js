@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const gmailSchema = new mongoose.Schema({
+const Carbook = new mongoose.Schema({
   name: String,
   phone: String,
   email: String,
@@ -12,4 +12,4 @@ const gmailSchema = new mongoose.Schema({
   date: String,
 });
 
-module.exports = mongoose.model("Gmaildata", gmailSchema);
+module.exports = mongoose.model("CarBooking Data", Carbook);

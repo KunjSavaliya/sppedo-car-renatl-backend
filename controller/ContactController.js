@@ -1,14 +1,14 @@
 const { response } = require("express");
-const comment = require("../model/comment");
+const Contact = require("../model/Contact");
 
 const comment_data = async (req, res) => {
   const { name, email, message, phone } = req.body;
-  comment.findOne({ phone }, (err, user) => {
+  Contact.findOne({ phone }, (err, user) => {
     //   if (user) {
     //     // res.send({ message: "alerdy" });
     //   } else
     {
-      const user = new comment({
+      const user = new Contact({
         name,
         phone,
         email,
@@ -28,7 +28,7 @@ const comment_data = async (req, res) => {
 };
 
 const comment_value = async (req, res) => {
-  comment.find({}, function (err, Product) {
+  Contact.find({}, function (err, Product) {
     if (err) {
       res.send({ message: "dont get data" });
     } else {
