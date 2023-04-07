@@ -14,12 +14,21 @@ const Feedback_sender = async (req, res) => {
     },
   });
 
+  const html = `
+  <p>Dear ${req.body.name}</p>
+  <p>Thank you for taking the time to provide feedback on speedo car rental Services. Your insight and suggestions were extremely helpful and we greatly appreciate your contribution. We value all feedback and are committed to using it to improve our offerings.</p>
+  <p>Best Regards,</p>
+  <p>Speedo Car Rental</p>
+
+  `
+
+
   var mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: "Sppedo car rental",
+    subject: " Thank You for Your Feedback -Sppedo car rental",
     // text: "hello",
-    text: `Your Name:${req.body.name} Message:${req.body.message}`,
+    html:html
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

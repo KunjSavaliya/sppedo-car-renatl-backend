@@ -1,13 +1,11 @@
 const { response } = require("express");
 const Contact = require("../model/Contact");
+const mongodb = require("mongodb");
 
 const comment_data = async (req, res) => {
   const { name, email, message, phone } = req.body;
   Contact.findOne({ phone }, (err, user) => {
-    //   if (user) {
-    //     // res.send({ message: "alerdy" });
-    //   } else
-    {
+  {
       const user = new Contact({
         name,
         phone,
@@ -27,6 +25,17 @@ const comment_data = async (req, res) => {
   console.log(req.body);
 };
 
+const contact_del = async (req, res) => {
+  const data = await Contact.deleteOne({
+    _id: new mongodb.ObjectId(req.params.id),
+  });
+  res.send(data);
+};
+
+
+
+
+
 const comment_value = async (req, res) => {
   Contact.find({}, function (err, Product) {
     if (err) {
@@ -41,4 +50,5 @@ const comment_value = async (req, res) => {
 module.exports = {
   comment_data,
   comment_value,
+  contact_del
 };
