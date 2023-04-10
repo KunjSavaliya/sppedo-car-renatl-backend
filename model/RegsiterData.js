@@ -5,6 +5,7 @@ const Register = new mongoose.Schema({
   Phone: String,
   email: String,
   password: String,
+  otp: String,
 });
 
 module.exports = mongoose.model("Register Data", Register);

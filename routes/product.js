@@ -15,6 +15,7 @@ router.get("/userdata", RegisterController.product_userdata);
 router.get("/Gmaildata", CarbookingController.Gmail_data);
 
 router.get("/mail", CarbookingController.mail_get);
+router.post("/otp", RegisterController.sendOTP);
 
 router.post("/forget", RegisterController.product_forget);
 router.post("/mailsent", CarbookingController.mail_sender);
