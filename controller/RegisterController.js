@@ -76,7 +76,7 @@ const sendOTP = async (req, res) => {
     to: email,
     subject: "Forget Password OTP - Sppedo car rental",
     html: `
-        <p>Your OTP for Forget Password:</p>
+        <p>Your OTP For Forget Password:</p>
         <h3>${req.body.otp}</h3>
       `
 
