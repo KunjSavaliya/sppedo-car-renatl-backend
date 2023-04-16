@@ -6,6 +6,8 @@ const FeedbackController = require("../controller/FeedbackController");
 const AddCarController = require("../controller/AddCarController");
 const StateController = require("../controller/StateController");
 const DriverController = require("../controller/DriverController");
+const ProfileController = require("../controller/ProfileController");
+
 
 
 
@@ -19,12 +21,16 @@ router.post("/otp", RegisterController.sendOTP);
 
 router.post("/forget", RegisterController.product_forget);
 router.post("/mailsent", CarbookingController.mail_sender);
+router.post("/driversent", CarbookingController.driver_sender);
+
 router.get("/Gmailupdateid/:id", CarbookingController.Gmail_updateid);
 router.delete("/Gdelete/:id", CarbookingController.Gmail_del);
 router.put("/gupdate/:id", CarbookingController.Gmail_update);
 router.delete("/cdelete/:id", ContactController.contact_del);
 
 router.post("/comment", ContactController.comment_data);
+router.post("/Profile", ProfileController.Profile_data);
+
 router.get("/commentdata", ContactController.comment_value);
 
 router.post("/feedback", FeedbackController.Feedback_sender);

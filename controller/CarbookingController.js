@@ -19,7 +19,7 @@ const mail_sender = async (req, res) => {
     },
   });
   const html =
-    `<p>Dear${req.body.name},</p>
+    `<p>Dear ${req.body.name},</p>
   <p>We hope this email finds you well. We would like to thank you for choosing our car rental services for your upcoming trip. As part of our standard operating procedure, we require all customers to submit their valid identification documents and driving license for verification before finalizing the rental reservation.</p>
   <p>To ensure a smooth and hassle-free car rental experience, we kindly request you to please provide us with the following documents for verification purposes:</p>
   <p>1.	Valid government-issued ID (e.g., passport, national ID card)</p>
@@ -108,7 +108,7 @@ const Gmail_del = async (req, res) => {
 };
 
 // update data
-// app.put("/update/:id", async (req, res, next) => {
+
 const Gmail_update = async (req, res, next) => {
 
   const { name, phone, email, car, drive, state, pickup, drop, date } = req.body;
@@ -122,7 +122,7 @@ const Gmail_update = async (req, res, next) => {
     },
   });
   const html =
-    `<p>Dear${req.body.name},</p>
+    `<p>Dear ${req.body.name},</p>
   <p>We hope this email finds you well. We would like to thank you for choosing our car rental services for your upcoming trip. As part of our standard operating procedure, we require all customers to submit their valid identification documents and driving license for verification before finalizing the rental reservation.</p>
   <p>To ensure a smooth and hassle-free car rental experience, we kindly request you to please provide us with the following documents for verification purposes:</p>
   <p>1.	Valid government-issued ID (e.g., passport, national ID card)</p>
@@ -186,6 +186,53 @@ const Gmail_update = async (req, res, next) => {
     });
 };
 
+
+
+
+const driver_sender = async (req, res) => {
+  const { email, drivername, driverphone } = req.body;
+
+  var transporter = nodemailr.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+
+    },
+  });
+  const html =
+    `<p>Dear ${req.body.name},</p>
+  <p>Driver Name :${req.body.drivername}</p>
+  <p>Driver Contact Number: ${req.body.driverphone}</p>
+ <p>Best regards,</p>
+  <p>Speedo Car Rental </p>`
+
+
+
+  var mailOptions = {
+    from: process.env.EMAIL,
+    to: email,
+    subject: "Driver Information- Sppedo car rental",
+    html: html
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email Sent:" + info.response);
+    }
+  });
+
+};
+
+
+
+
+
+
+
+
 module.exports = {
   mail_sender,
   mail_get,
@@ -193,4 +240,5 @@ module.exports = {
   Gmail_updateid,
   Gmail_del,
   Gmail_update,
+  driver_sender
 };

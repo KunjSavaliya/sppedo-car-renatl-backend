@@ -10,6 +10,8 @@ const Carbook = new mongoose.Schema({
   pickup: String,
   drop: String,
   date: String,
+  drivername: String,
+  driverphone: String
 });
 
 module.exports = mongoose.model("CarBooking Data", Carbook);
