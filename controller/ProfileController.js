@@ -10,7 +10,6 @@ const Profile_data = async (req, res) => {
                 name,
                 phone,
                 email,
-                message,
                 gender,
                 dob,
                 Address,
@@ -28,18 +27,15 @@ const Profile_data = async (req, res) => {
     console.log(req.body);
 };
 
-const contact_del = async (req, res) => {
-    const data = await Profile.deleteOne({
+
+const Profile_updateid = async (req, res) => {
+    const data = await Profile.findOne({
         _id: new mongodb.ObjectId(req.params.id),
     });
     res.send(data);
 };
 
-
-
-
-
-const comment_value = async (req, res) => {
+const Profile_alldata = async (req, res) => {
     Profile.find({}, function (err, Product) {
         if (err) {
             res.send({ message: "dont get data" });
@@ -47,11 +43,46 @@ const comment_value = async (req, res) => {
             res.send(Product);
         }
     });
-    // console.log(req.Product);
 };
+
+const p_Update = async (req, res, next) => {
+
+    const { name, email, phone, gender, dob, Address, } = req.body;
+
+    Profile.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+            $set: {
+                name: req.body.name,
+                phone: req.body.phone,
+                email: req.body.email,
+                gender: req.body.gender,
+                dob: req.body.dob,
+                Address: req.body.Address,
+
+
+
+
+            },
+        }
+    )
+        .then((result) => {
+            res.status(200).json({
+                User: result,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                error: err,
+            });
+        });
+};
+
 
 module.exports = {
     Profile_data,
-    comment_value,
-    contact_del
+    p_Update,
+    Profile_updateid,
+    Profile_alldata
 };

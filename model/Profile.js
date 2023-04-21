@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const Profile = new mongoose.Schema({
     name: String,
-    Phone: String,
+    phone: String,
     email: String,
     gender: String,
-    dob: Number,
+    dob: String,
     Address: String,
 });
 

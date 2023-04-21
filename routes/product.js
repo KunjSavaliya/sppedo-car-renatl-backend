@@ -26,10 +26,14 @@ router.post("/driversent", CarbookingController.driver_sender);
 router.get("/Gmailupdateid/:id", CarbookingController.Gmail_updateid);
 router.delete("/Gdelete/:id", CarbookingController.Gmail_del);
 router.put("/gupdate/:id", CarbookingController.Gmail_update);
+router.put("/pupdate/:id", ProfileController.p_Update);
+
 router.delete("/cdelete/:id", ContactController.contact_del);
 
 router.post("/comment", ContactController.comment_data);
 router.post("/Profile", ProfileController.Profile_data);
+router.get("/profileupdate/:id", ProfileController.Profile_updateid);
+router.get("/alldata", ProfileController.Profile_alldata);
 
 router.get("/commentdata", ContactController.comment_value);
 
