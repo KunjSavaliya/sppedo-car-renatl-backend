@@ -37,9 +37,6 @@ const mail_sender = async (req, res) => {
     to: email,
     subject: "Request for Document Verification for Car Rental Reservation - Sppedo car rental",
     html: html
-    //  text:message
-
-
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -202,9 +199,11 @@ const driver_sender = async (req, res) => {
   });
   const html =
     `<p>Dear ${req.body.name},</p>
-  <p>Driver Name :${req.body.drivername}</p>
-  <p>Driver Contact Number: ${req.body.driverphone}</p>
- <p>Best regards,</p>
+  <p>We're excited to provide you with a safe and comfortable journey with a driver. Your assigned driver is ${req.body.drivername}, and you can contact him at  ${req.body.driverphone}.</p>
+  <p>We've taken all necessary measures to ensure your safety and security during the journey. Our drivers undergo background checks, wear masks at all times, and receive regular safety training.</p>
+ <p>If you have any questions or concerns, please let us know.</p>
+ <p>Thank you for choosing our car rental service.</p>
+  <p>Best regards,</p>
   <p>Speedo Car Rental </p>`
 
 

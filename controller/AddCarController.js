@@ -5,12 +5,13 @@ const mongodb = require("mongodb");
 
 
 const car_data = async (req, res) => {
-  const { carname, carbrand } = req.body;
+  const { carname, carbrand, platnumber } = req.body;
   Car.findOne({}, (err, user) => {
     {
       const user = new Car({
         carbrand,
-        carname
+        carname,
+        platnumber
       });
       user.save((err) => {
         if (err) {
@@ -63,6 +64,7 @@ const car_update = async (req, res, next) => {
       $set: {
         carbrand: req.body.carbrand,
         carname: req.body.carname,
+        platnumber: req.body.platnumber
 
 
 

@@ -7,6 +7,40 @@ var nodemailr = require("nodemailer");
 
 const product_register = async (req, res) => {
   const { name, email, password, Phone } = req.body;
+
+  var transporter = nodemailr.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+
+    },
+  });
+  const html = `
+<p>Registration Successful</p>
+<p>Dear ${req.body.name},</p>
+<p>Your registration with our car rental website is complete! You now have access to a variety of vehicles at affordable rates. Simply log in to your account and start browsing.</p>
+<p>Our website is easy to navigate, but our customer support team is available 24/7 if you need assistance. Thank you for choosing us for your transportation needs.</p>
+<p>Best regards,</p>
+<p>Speedo Car Rental </p>
+
+`
+
+  var mailOptions = {
+    from: process.env.EMAIL,
+    to: email,
+    subject: " Register Information- Sppedo car rental",
+    html: html
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email Sent:" + info.response);
+    }
+  });
+
   Registerdata.findOne({ email: email }, (err, user) => {
     if (user) {
       res.send({ message: "alerdy" });
