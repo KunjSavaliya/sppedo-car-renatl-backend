@@ -9,7 +9,6 @@ app.use(cors());
 app.use(express.urlencoded());
 app.use(bodyParser.json());
 
-// app.use('/public',express.static('public'));
 const productRoutes = require("./routes/product");
 app.use("/api", productRoutes);
 

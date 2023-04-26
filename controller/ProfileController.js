@@ -23,8 +23,6 @@ const Profile_data = async (req, res) => {
             });
         }
     });
-    // res.send("my API register")
-    console.log(req.body);
 };
 
 
@@ -46,9 +44,7 @@ const Profile_alldata = async (req, res) => {
 };
 
 const p_Update = async (req, res, next) => {
-
     const { name, email, phone, gender, dob, Address, } = req.body;
-
     Profile.findOneAndUpdate(
         { _id: req.params.id },
         {
@@ -59,10 +55,6 @@ const p_Update = async (req, res, next) => {
                 gender: req.body.gender,
                 dob: req.body.dob,
                 Address: req.body.Address,
-
-
-
-
             },
         }
     )

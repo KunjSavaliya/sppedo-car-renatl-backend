@@ -20,8 +20,6 @@ const state_data = async (req, res) => {
             });
         }
     });
-    // res.send("my API register")
-    console.log(req.body);
 };
 
 
@@ -34,7 +32,6 @@ const state_value = async (req, res) => {
             res.send(Product);
         }
     });
-    // console.log(req.Product);
 };
 
 const state_de = async (req, res) => {

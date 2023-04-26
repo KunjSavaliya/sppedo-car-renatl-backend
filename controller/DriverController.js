@@ -26,11 +26,7 @@ const driver_data = async (req, res) => {
             });
         }
     });
-    // res.send("my API register")
-    console.log(req.body);
 };
-
-
 
 const driver_value = async (req, res) => {
     Driver.find({}, function (err, Product) {
@@ -40,7 +36,6 @@ const driver_value = async (req, res) => {
             res.send(Product);
         }
     });
-    // console.log(req.Product);
 };
 
 const driver_del = async (req, res) => {

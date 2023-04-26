@@ -5,7 +5,7 @@ const mongodb = require("mongodb");
 const comment_data = async (req, res) => {
   const { name, email, message, phone } = req.body;
   Contact.findOne({ phone }, (err, user) => {
-  {
+    {
       const user = new Contact({
         name,
         phone,
@@ -21,8 +21,6 @@ const comment_data = async (req, res) => {
       });
     }
   });
-  // res.send("my API register")
-  console.log(req.body);
 };
 
 const contact_del = async (req, res) => {
@@ -32,10 +30,6 @@ const contact_del = async (req, res) => {
   res.send(data);
 };
 
-
-
-
-
 const comment_value = async (req, res) => {
   Contact.find({}, function (err, Product) {
     if (err) {
@@ -44,7 +38,6 @@ const comment_value = async (req, res) => {
       res.send(Product);
     }
   });
-  // console.log(req.Product);
 };
 
 module.exports = {

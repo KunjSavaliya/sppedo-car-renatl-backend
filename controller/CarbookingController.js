@@ -2,20 +2,15 @@ const { response } = require("express");
 const Product = require("../model/RegsiterData");
 const Carbooking = require("../model/Carbooking");
 const mongodb = require("mongodb");
-
 var nodemailr = require("nodemailer");
-
-
 
 const mail_sender = async (req, res) => {
   const { name, phone, email, car, drive, state, pickup, drop, date } = req.body;
-
   var transporter = nodemailr.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD,
-
     },
   });
   const html =
@@ -29,8 +24,6 @@ const mail_sender = async (req, res) => {
   <p>Thank you for your cooperation and understanding. We look forward to serving you and providing you with a safe and comfortable car rental experience.</p>
   <p>Best regards,</p>
   <p>Speedo Car Rental </p>`
-
-
 
   var mailOptions = {
     from: process.env.EMAIL,
@@ -46,7 +39,6 @@ const mail_sender = async (req, res) => {
       console.log("Email Sent:" + info.response);
     }
   });
-
   {
     const user = new Carbooking({
       name,
@@ -76,7 +68,6 @@ const mail_get = async (req, res) => {
     .catch((error) => res.status(500).send(error.message));
 };
 
-// get all data
 const Gmail_data = async (req, res) => {
   Carbooking.find({}, function (err, Product) {
     if (err) {
@@ -85,18 +76,15 @@ const Gmail_data = async (req, res) => {
       res.send(Product);
     }
   });
-  // console.log(req.Product);
 };
 
-// app.get("/findOne/:id", async (req, res) => {
 const Gmail_updateid = async (req, res) => {
   const data = await Carbooking.findOne({
     _id: new mongodb.ObjectId(req.params.id),
   });
   res.send(data);
 };
-// delete data
-// app.delete("/delete/:id", async (req, res) => {
+
 const Gmail_del = async (req, res) => {
   const data = await Carbooking.deleteOne({
     _id: new mongodb.ObjectId(req.params.id),
@@ -104,12 +92,8 @@ const Gmail_del = async (req, res) => {
   res.send(data);
 };
 
-// update data
-
 const Gmail_update = async (req, res, next) => {
-
   const { name, phone, email, car, drive, state, pickup, drop, date } = req.body;
-
   var transporter = nodemailr.createTransport({
     service: "gmail",
     auth: {
@@ -130,16 +114,11 @@ const Gmail_update = async (req, res, next) => {
   <p>Best regards,</p>
   <p>Speedo Car Rental </p>`
 
-
-
   var mailOptions = {
     from: process.env.EMAIL,
     to: email,
     subject: "Request for Document Verification for Car Rental Reservation - Sppedo car rental",
     html: html
-    //  text:message
-
-
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -164,9 +143,6 @@ const Gmail_update = async (req, res, next) => {
         pickup: req.body.pickup,
         drop: req.body.drop,
         date: req.body.date,
-
-
-
       },
     }
   )
@@ -183,12 +159,8 @@ const Gmail_update = async (req, res, next) => {
     });
 };
 
-
-
-
 const driver_sender = async (req, res) => {
   const { email, drivername, driverphone } = req.body;
-
   var transporter = nodemailr.createTransport({
     service: "gmail",
     auth: {
@@ -205,8 +177,6 @@ const driver_sender = async (req, res) => {
  <p>Thank you for choosing our car rental service.</p>
   <p>Best regards,</p>
   <p>Speedo Car Rental </p>`
-
-
 
   var mailOptions = {
     from: process.env.EMAIL,

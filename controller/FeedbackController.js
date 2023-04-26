@@ -1,11 +1,9 @@
 const { response } = require("express");
 const Feedback = require("../model/Feedback");
-
 var nodemailr = require("nodemailer");
 
 const Feedback_sender = async (req, res) => {
   const { name, email, message } = req.body;
-
   var transporter = nodemailr.createTransport({
     service: "gmail",
     auth: {
@@ -18,17 +16,13 @@ const Feedback_sender = async (req, res) => {
   <p>Dear ${req.body.name}</p>
   <p>Thank you for taking the time to provide feedback on speedo car rental Services. Your insight and suggestions were extremely helpful and we greatly appreciate your contribution. We value all feedback and are committed to using it to improve our offerings.</p>
   <p>Best Regards,</p>
-  <p>Speedo Car Rental</p>
-
-  `
-
+  <p>Speedo Car Rental</p> `
 
   var mailOptions = {
     from: process.env.EMAIL,
     to: email,
     subject: " Thank You for Your Feedback -Sppedo car rental",
-    // text: "hello",
-    html:html
+    html: html
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -38,7 +32,6 @@ const Feedback_sender = async (req, res) => {
       console.log("Email Sent:" + info.response);
     }
   });
-
   {
     const user = new Feedback({
       name,
@@ -53,7 +46,6 @@ const Feedback_sender = async (req, res) => {
       }
     });
   }
-  console.log(req.body);
 };
 
 const feedback_data = async (req, res) => {

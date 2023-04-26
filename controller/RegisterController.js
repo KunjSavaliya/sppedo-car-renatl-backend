@@ -4,16 +4,13 @@ const Gmaildata = require("../model/Carbooking");
 const crypto = require('crypto');
 var nodemailr = require("nodemailer");
 
-
 const product_register = async (req, res) => {
   const { name, email, password, Phone } = req.body;
-
   var transporter = nodemailr.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD,
-
     },
   });
   const html = `
@@ -22,9 +19,7 @@ const product_register = async (req, res) => {
 <p>Your registration with our car rental website is complete! You now have access to a variety of vehicles at affordable rates. Simply log in to your account and start browsing.</p>
 <p>Our website is easy to navigate, but our customer support team is available 24/7 if you need assistance. Thank you for choosing us for your transportation needs.</p>
 <p>Best regards,</p>
-<p>Speedo Car Rental </p>
-
-`
+<p>Speedo Car Rental </p>`
 
   var mailOptions = {
     from: process.env.EMAIL,
@@ -60,17 +55,12 @@ const product_register = async (req, res) => {
       });
     }
   });
-  // res.send("my API register")
-  console.log(req.body);
 };
 
 const product_forget = async (req, res) => {
   const { password, email } = req.body;
   Registerdata.findOne({ email: email }, (err, Registerdata) => {
-
-
     Registerdata.updateOne({
-
       $set: {
         password: req.body.password,
       },
@@ -87,23 +77,17 @@ const product_forget = async (req, res) => {
         });
       });
   });
-
-  console.log(req.body);
 };
-
 
 const sendOTP = async (req, res) => {
   const { email, otp } = req.body;
   const transporter = nodemailr.createTransport({
-
     service: "gmail",
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD,
-
     },
   });
-
 
   var mailOptions = {
     from: process.env.EMAIL,
@@ -113,17 +97,9 @@ const sendOTP = async (req, res) => {
         <p>Your OTP For Forget Password:</p>
         <h3>${req.body.otp}</h3>
       `
-
-
   };
-
   const info = await transporter.sendMail(mailOptions);
-  console.log(`Email sent: ${info.messageId}`);
 }
-
-
-
-
 
 const product_userdata = async (req, res) => {
   Registerdata.find({}, function (err, Registerdata) {
@@ -133,7 +109,6 @@ const product_userdata = async (req, res) => {
       res.send(Registerdata);
     }
   });
-  // console.log(req.Registerdata);
 };
 
 module.exports = {
@@ -141,6 +116,4 @@ module.exports = {
   product_userdata,
   product_forget,
   sendOTP
-  // mail_sender,
-  // mail_get,
 };

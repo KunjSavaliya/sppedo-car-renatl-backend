@@ -22,8 +22,6 @@ const car_data = async (req, res) => {
       });
     }
   });
-  // res.send("my API register")
-  console.log(req.body);
 };
 
 
@@ -36,7 +34,6 @@ const car_value = async (req, res) => {
       res.send(Product);
     }
   });
-  // console.log(req.Product);
 };
 
 
@@ -46,8 +43,8 @@ const car_updateid = async (req, res) => {
   });
   res.send(data);
 };
-// delete data
-// app.delete("/delete/:id", async (req, res) => {
+
+
 const car_del = async (req, res) => {
   const data = await Car.deleteOne({
     _id: new mongodb.ObjectId(req.params.id),
@@ -65,10 +62,6 @@ const car_update = async (req, res, next) => {
         carbrand: req.body.carbrand,
         carname: req.body.carname,
         platnumber: req.body.platnumber
-
-
-
-
       },
     }
   )
