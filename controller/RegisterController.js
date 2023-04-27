@@ -92,7 +92,7 @@ const sendOTP = async (req, res) => {
   var mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: "Forget Password OTP - Sppedo car rental",
+    subject: "Forget Password OTP - Speedo car rental",
     html: `
         <p>Your OTP For Forget Password:</p>
         <h3>${req.body.otp}</h3>

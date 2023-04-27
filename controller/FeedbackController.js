@@ -21,7 +21,7 @@ const Feedback_sender = async (req, res) => {
   var mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: " Thank You for Your Feedback -Sppedo car rental",
+    subject: " Thank You for Your Feedback -Speedo car rental",
     html: html
   };
 

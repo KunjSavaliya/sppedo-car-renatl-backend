@@ -28,7 +28,7 @@ const mail_sender = async (req, res) => {
   var mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: "Request for Document Verification for Car Rental Reservation - Sppedo car rental",
+    subject: "Request for Document Verification for Car Rental Reservation - Speedo car rental",
     html: html
   };
 
@@ -117,7 +117,7 @@ const Gmail_update = async (req, res, next) => {
   var mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: "Request for Document Verification for Car Rental Reservation - Sppedo car rental",
+    subject: "Request for Document Verification for Car Rental Reservation - Speedo car rental",
     html: html
   };
 
@@ -181,7 +181,7 @@ const driver_sender = async (req, res) => {
   var mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: "Driver Information- Sppedo car rental",
+    subject: "Driver Information- Speedo car rental",
     html: html
   };
 
