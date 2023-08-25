@@ -13,7 +13,8 @@ const productRoutes = require("./routes/product");
 app.use("/api", productRoutes);
 
 mongoose.connect(
-  "mongodb://localhost:27017/CABI",
+  // "mongodb://localhost:27017/CABI",
+  "mongodb+srv://kunj:ipolS8OYfv6asxr7@cluster0.id7x3zq.mongodb.net/"
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
